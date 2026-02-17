@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Kappers ✂ - Uw Kapper in Nijmegen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #d4af37;
+            --accent-color: #2c2c2c;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --background-light: #f8f8f8;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Header */
+        header {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .nav-btn {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-btn:hover {
+            background: #c9a532;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--text-light);
+            padding: 140px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '✂';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .hero-tagline {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background: #c9a532;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 20px;
+            background: var(--text-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 20px;
+            background: var(--background-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--text-light);
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 20px;
+            background: var(--text-light);
+        }
+
+        .pricing-info {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--background-light);
+            padding: 3rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .pricing-info p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-cta {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-cta:hover {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 20px;
+            background: var(--background-light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            background: var(--text-light);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            gap: 1.5rem;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-item i {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            min-width: 30px;
+        }
+
+        .contact-item-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .contact-item-content p,
+        .contact-item-content a {
+            color: #666;
+            text-decoration: none;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .contact-item-content a:hover {
+            color: var(--secondary-color);
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 3rem 20px 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content h3 {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-tagline {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #ccc;
+        }
+
+        .footer-contact {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-contact a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .footer-contact a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-credit {
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .footer-credit a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .footer-credit a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-info {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 120px 15px 80px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">City Kappers ✂</div>
+            <a href="tel:+31644775572" class="nav-btn">
+                <i class="fas fa-phone"></i> Bel Nu
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>City Kappers ✂</h1>
+            <p class="hero-tagline">Strak en lokaal - Uw kapper in het hart van Nijmegen</p>
+            <div class="cta-buttons">
+                <a href="tel:+31644775572" class="btn-primary">
+                    <i class="fas fa-phone"></i> Bel Ons Direct
+                </a>
+                <a href="https://wa.me/31644775572" class="btn-secondary">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">Welkom bij City Kappers</h2>
+            <p class="section-subtitle">Professionele kapsalon in Nijmegen</p>
+            <div class="about-content">
+                <p>
+                    City Kappers is uw betrouwbare kapper in Nijmegen, gevestigd aan de Ziekerstraat 98. 
+                    Wij combineren vakmanschap met een persoonlijke aanpak om ervoor te zorgen dat u 
+                    tevreden de deur uitloopt. Of u nu komt voor een klassieke knipbeurt, een moderne 
+                    styling of een verzorgde baardtrim - bij ons bent u aan het juiste adres.
+                </p>
+                <p style="margin-top: 1.5rem;">
+                    Makkelijk bereikbaar in het centrum van Nijmegen en altijd klaar om u van dienst te zijn. 
+                    Bel of app ons gerust voor een afspraak of kom gewoon langs!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Onze Diensten</h2>
+            <p class="section-subtitle">Wat wij voor u kunnen betekenen</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Knippen</h3>
+                    <p>Professionele knipbeurten voor heren en dames. Van klassiek tot modern, wij zorgen ervoor dat uw haar er strak uitziet.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brush"></i>
+                    </div>
+                    <h3>Styling</h3>
+                    <p>Persoonlijk advies en styling die bij u past. Wij helpen u de perfecte look te vinden voor elke gelegenheid.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Baardverzorging</h3>
+                    <p>Van trimmen tot volledig vormgeven - uw baard in goede handen. Verzorgd en strak, precies zoals het hoort.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Kleuren</h3>
+                    <p>Professionele kleurbehandelingen voor een frisse uitstraling. Wij gebruiken kwaliteitsproducten voor het beste resultaat.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>Kinderen</h3>
+                    <p>Ook de kleintjes zijn welkom bij City Kappers. Wij zorgen ervoor dat knippen een leuke ervaring wordt.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Speciale Behandelingen</h3>
+                    <p>Vraag naar onze speciale behandelingen en verzorgingsproducten voor optimaal resultaat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">Prijzen & Afspraken</h2>
+            <p class="section-subtitle">Eerlijk en transparant</p>
+            <div class="pricing-info">
+                <p>
+                    <i class="fas fa-scissors" style="color: var(--secondary-color); margin-right: 10px;"></i>
+                    Wij hanteren eerlijke prijzen voor al onze diensten. Elke behandeling is maatwerk, 
+                    daarom verschillen de prijzen per situatie.
+                </p>
+                <p>
+                    Bel ons voor actuele tarieven en beschikbaarheid. Wij denken graag met u mee 
+                    over de beste behandeling voor uw haar.
+                </p>
+                <a href="tel:+31644775572" class="pricing-cta">
+                    <i class="fas fa-phone"></i> Vraag Naar Onze Tarieven
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <h2 class="section-title">Bezoek Ons</h2>
+            <p class="section-subtitle">Makkelijk te bereiken in Nijmegen</p>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-item-content">
+                            <h3>Telefoon</h3>
+                            <a href="tel:+31644775572">+31 6 44775572</a>
+                            <p style="margin-top: 0.5rem; font-size: 0.95rem;">Bel voor een afspraak of vragen</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-item-content">
+                            <h3>Adres</h3>
+                            <p>Ziekerstraat 98<br>6511 LK Nijmegen<br>Nederland</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div class="contact-item-content">
+                            <h3>WhatsApp</h3>
+                            <a href="https://wa.me/31644775572">Stuur ons een bericht</a>
+                            <p style="margin-top: 0.5rem; font-size: 0.95rem;">Snel en gemakkelijk contact</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=Ziekerstraat+98,+6511+LK+Nijmegen,+Netherlands&output=embed"
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>City Kappers ✂</h3>
+            <p class="footer-tagline">Strak en lokaal - Uw kapper in Nijmegen</p>
+            <div class="footer-contact">
+                <i class="fas fa-phone"></i> <a href="tel:+31644775572">+31 6 44775572</a>
+                <br>
+                <i class="fas fa-map-marker-alt"></i> Ziekerstraat 98, 6511 LK Nijmegen
+            </div>
+            <div class="footer-credit">
+                Website door <a href="https://youchain.online" target="_blank">Youchain.online</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
